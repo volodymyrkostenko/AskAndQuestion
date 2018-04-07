@@ -6,7 +6,8 @@ class AsksController < ApplicationController
 		
 	end
 	def show
-		
+		@answers = @ask.answers
+		@answer= Answer.new
 	end
 
 	def new

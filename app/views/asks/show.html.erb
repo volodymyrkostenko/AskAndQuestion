@@ -1,3 +1,9 @@
 <%= @ask.question%>
+<br>
 <%= link_to "edit", edit_ask_path(@ask)%>
+<br>
 <%= link_to "destroy", @ask, method: :delete, data: { confirm:"Are you sure?"}%>
+<br>
+<h1>Answer</h1>
+<%=render 'answers/answer_form' %>
+<%=render @answers %>
