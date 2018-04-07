@@ -6,4 +6,8 @@
 <br>
 <h1>Answer</h1>
 <%=render 'answers/answer_form' %>
-<%=render @answers %>
+
+ <div id="answers" data-ask-id="<%= @ask.id %>">
+ 	<%=render @answers %>
+ </div>
+
