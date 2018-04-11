@@ -1,6 +1,7 @@
 <% unless current_user.is_a? GuestUser %>
-  <%= form_for @answer, url: '#' do |f| %>
+  <%= form_for [@ask, @answer], remote:true, :html=> {role: "form"} do |f| %>
     <div class="form-group">
+     <%= f.label :body %>
       <%= f.text_area :body, class: 'form-control' %>
     </div>
 

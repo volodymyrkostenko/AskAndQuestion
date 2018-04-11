@@ -1,8 +1,9 @@
 class AsksController < ApplicationController
-	
+	before_action :authenticate_user!
+	rescue_from ActiveRecord::RecordNotFound, with: :resource_not_found
 	before_action :set_ask, only: [:edit, :show, :destroy, :update]
 	def index
-		@asks = Ask.all
+		@asks = current_user.asks
 		
 	end
 	def show
@@ -16,7 +17,7 @@ class AsksController < ApplicationController
 		@ask= Ask.new
 	end
 	def create
-		@ask = Ask.new(ask_params)
+		@ask = current_user.asks.build(ask_params)
 		respond_to do |format|
 			if @ask.save
 				format.html{redirect_to @ask, notice: "Question was create"}
@@ -48,6 +49,13 @@ class AsksController < ApplicationController
 			format.html{redirect_to asks_path, notice: "Your question was destroy"}
 	
 		end
+	end
+	protected
+
+	def resource_not_found
+      message = "The article you are looking for could not be found"
+      flash[:alert] = message
+      redirect_to root_path
 	end
 	private
 	def set_ask
