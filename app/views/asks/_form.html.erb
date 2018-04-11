@@ -1,5 +1,7 @@
 <%=form_for(@ask) do |f| %>	
 	<%=f.text_area :question%>
 	<br>
-	<%=submit_tag %>
+	<%= f.collection_select(:consultant_id, Consultant.all, :id, :email)%>
+	<br>
+		<%=f.submit %>
 <%end%>
