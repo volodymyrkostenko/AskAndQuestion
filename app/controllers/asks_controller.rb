@@ -1,9 +1,13 @@
 class AsksController < ApplicationController
-	before_action :authenticate_user! 
+	before_action :redirect_to_sign_in
 	rescue_from ActiveRecord::RecordNotFound, with: :resource_not_found
 	before_action :set_ask, only: [:edit, :show, :destroy, :update]
 	def index
-		@asks = current_user.asks
+		if current_user
+			@asks = current_user.asks
+		else	
+			@asks = current_consultant.asks
+		end
 		
 	end
 	def show
@@ -64,5 +68,11 @@ class AsksController < ApplicationController
 	end
 	def ask_params
 		params.require(:ask).permit(:question)		
+	end
+	def redirect_to_sign_in
+		unless current_consultant || current_user
+			authenticate_user! 
+		end
+		
 	end
 end

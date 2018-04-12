@@ -1,7 +1,7 @@
 class Answer < ApplicationRecord
   belongs_to :ask
-  belongs_to :user	
- 
+  belongs_to :user, optional: true	
+  belongs_to :consultant, optional: true
 
   validates :body, presence: true
 

@@ -1,25 +1,38 @@
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
-     identified_by :current_user
-  	def guest_user
-      guest = GuestUser.new
-      guest.id = guest.object_id
-      guest.email = "guest@user.com"
-      guest
-    end
+    identified_by :current_consultant, :current_user
 
     def connect
-      self.current_user = find_verified_user || guest_user
-      logger.add_tags 'ActionCable', current_user.email
-      logger.add_tags 'ActionCable', current_user.id
+      find_verified
     end
 
     protected
 
-    def find_verified_user
-      if verified_user = env['warden'].user
-        verified_user
-      end
+    def find_verified
+      setup_user if verified_user
+      setup_consultant if verified_consultant
+
+      reject_unauthorized_connection unless [current_consultant, current_user].any?
+    end
+
+    def verified_user
+      cookies.signed['user.expires_at'].present? &&
+        cookies.signed['user.expires_at'] > Time.zone.now
+    end
+
+    def verified_consultant
+      cookies.signed['consultant.expires_at'].present? &&
+        cookies.signed['consultant.expires_at'] > Time.zone.now
+    end
+
+    def setup_consultant
+      self.current_consultant = Consultant.find_by(id: cookies.signed['consultant.id'])
+      logger.add_tags 'ActionCable', "#{current_consultant.model_name.name} #{current_consultant.id}"
+    end
+
+    def setup_user
+      self.current_user = User.find_by(id: cookies.signed['user.id'])
+      logger.add_tags 'ActionCable', "#{current_user.model_name.name} #{current_user.id}"
     end
   end
 end

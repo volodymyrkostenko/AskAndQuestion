@@ -7,8 +7,11 @@ class AsksChannel < ApplicationCable::Channel
   end
 
   def send_answer(data)
-  	
-    current_user.answers.create!(body: data['answer'], ask_id: data['ask_id'])
+  	if current_user
+   		current_user.answers.create!(body: data['answer'], ask_id: data['ask_id'])
+   	else
+   		current_consultant.answers.create!(body: data['answer'], ask_id: data['ask_id'])
+   	end
    
   end
 end 

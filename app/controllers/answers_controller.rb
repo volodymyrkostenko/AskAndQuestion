@@ -1,8 +1,12 @@
 class AnswersController < ApplicationController
 
 	def create
-		@answer = current_user.answers.build(answer_params)
-		
+		if current_user
+			@answer = current_user.answers.build(answer_params)
+		elsif current_consultant
+			@answer = current_consultant.answers.build(answer_params)
+					  
+		end	
 	end
 
 	private
