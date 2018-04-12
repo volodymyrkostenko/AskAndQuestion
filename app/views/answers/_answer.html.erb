@@ -1,4 +1,8 @@
 
-
+<% if answer.user%>
+ <%= answer.user.email%>
+ <%else%>
+ <%=answer.consultant.email%>
+ <%end%>
 <%=answer.body%>
 <br>
