@@ -8,6 +8,7 @@ gem 'devise', '~> 4.4', '>= 4.4.3'
 gem 'redis', '~> 4.0', '>= 4.0.1'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'bootstrap', '~> 4.1.0'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
