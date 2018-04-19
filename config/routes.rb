@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
+  get 'pages/home'
+
   devise_for :consultants
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :asks do
   	resources :answers
   end
-  root to: "asks#index"
+ 
+ authenticated :user do
+    root 'asks#index', as: :authenticated_root
+ end
+
+  root "pages#home"
+
   mount ActionCable.server => '/cable'
 end

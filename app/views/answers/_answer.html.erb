@@ -1,8 +1,19 @@
 
-<% if answer.user%>
- <%= answer.user.email%>
- <%else%>
- <%=answer.consultant.email%>
- <%end%>
-<%=answer.body%>
-<br>
+	<% if answer.user%>
+			<div class="answer">
+		<%else%>
+			<div class="answer-2">
+		<%end%>
+	<div class="author">
+		<% if answer.user%>
+			<%= answer.user.email%>
+		<%else%>
+			<%=answer.consultant.email%>
+		<%end%>
+	</div>
+	<div class="answer-body">
+		<%=answer.body%>
+	</div>
+	
+	
+</div>

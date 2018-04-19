@@ -1,13 +1,28 @@
-<%= @ask.question%>
-<br>
-<%= link_to "edit", edit_ask_path(@ask)%>
-<br>
-<%= link_to "destroy", @ask, method: :delete, data: { confirm:"Are you sure?"}%>
-<br>
-<h1>Answer</h1>
-<%=render 'answers/answer_form' %>
+<div class="ask">
+	<div class="ask-head">
+		<div class="ask-text"><%= @ask.question%></div>
+		
+		
+		<div class="ask-link">
+			<%= link_to edit_ask_path(@ask) do%>
+				<i class="fa fa-pencil-square" aria-hidden="true"></i>
+			<%end%>
 
- <div id="answers" data-ask-id="<%= @ask.id %>">
- 	<%=render @answers %>
- </div>
+		
+			<%= link_to  @ask, method: :delete, data: { confirm:"Are you sure?"} do%>
+				<i class="fa fa-trash" aria-hidden="true"></i>
+			<%end%>
+			<%= link_to root_path do%>
+				<i class="fa fa-times" aria-hidden="true"></i>
+			<%end%>
+		</div>
+	</div>
+	<br>
+	<h1>Answer</h1>
+	
 
+	<div id="answers" data-ask-id="<%= @ask.id %>">
+		<%=render @answers %>
+	</div>
+	<%=render 'answers/answer_form' %>
+</div>

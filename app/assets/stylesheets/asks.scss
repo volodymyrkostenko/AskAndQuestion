@@ -1,0 +1,58 @@
+.asks h1{
+	
+	text-align: center
+}
+.card-body{
+	background-color: #fc5858;
+	color: black;
+
+}
+.row{
+	margin-bottom: 30px;
+}
+.ask-head{
+	background: black;
+	color: white;
+	margin: -1.2%;
+	display: flex;
+	text-align: center !important;
+
+}
+.ask{
+	border: 3px solid black;
+	padding: 1%;
+
+}
+.ask-link{
+	margin-left: auto;
+	margin-right: 5px;
+}
+.fa-pencil-square{
+	color: white;
+}
+.fa-trash{
+	color:red;
+}
+.fa-times{
+	color: yellow;
+}
+.ask-text{
+	width: 95%;
+}
+.answer{
+	border: 2px red solid;
+	margin-top: 10px;
+}
+.answer-2{
+	border: 2px green solid;
+	margin-top: 10px;
+}
+
+.author{
+	background: red;
+	color: white;
+	text-align: center;
+}
+.answer-body{
+	padding: 1%;
+}
