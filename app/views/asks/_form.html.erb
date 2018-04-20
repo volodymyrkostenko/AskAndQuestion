@@ -1,7 +1,18 @@
 <%=form_for(@ask) do |f| %>	
-	<%=f.text_area :question%>
+	<div class="form-group">
+		<%=f.text_area :question, class: "form-control"%>
+	</div>
+	
 	<br>
-	<%= f.collection_select(:consultant_id, Consultant.all, :id, :email)%>
+	<div class="form-group">
+		<%= f.collection_select(:consultant_id, Consultant.all, :id, :email, {
+                                                            
+                                                            include_blank: false
+                                                          },
+
+                                                            class: "form-control")%>
+	</div>
+	
 	<br>
-		<%=f.submit %>
+		<%=f.submit "Create ask", class: "btn btn-primary" %>
 <%end%>
