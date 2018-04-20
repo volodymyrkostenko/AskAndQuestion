@@ -9,8 +9,12 @@ Rails.application.routes.draw do
   end
  
  authenticated :user do
-    root 'asks#index', as: :authenticated_root
+    root 'asks#index'
  end
+ authenticated :consultant do
+    root 'asks#index'
+ end
+
 
   root "pages#home"
 

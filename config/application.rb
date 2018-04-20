@@ -6,6 +6,10 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+if Rack::Utils.respond_to?("key_space_limit=")
+  Rack::Utils.key_space_limit = 7862144 # 4 times the default size
+end
+
 module AskAndQuestion
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
